@@ -1,70 +1,147 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="/static/css/index.css">
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=pZF01A8WFzR6orPXQQ6IwwIgG6ZlP9Ix"></script>
-	<title>地图展示</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="{% static 'css/layui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>百度地图后台</title>
 </head>
-<body>
-<div class="nav">
-    <ul>
-        <li><a href="">首页</a></li>
-        <li><a href="">导航</a></li>
-        <li>{{ address_longitude }}</li>
-        <li>{{ address_data }}</li>
-    </ul>
-</div>
-	<div id="allmap">
-
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">地图后台系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    map
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出/登录</a></li>
+        </ul>
     </div>
 
-<div id="r-result">
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">所有商品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="javascript:;">列表三</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">发布商品</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
 
-    <input type="button" value="获取我的位置" onclick="get_location()"/>
+        <div id="allmap">
+
+        </div>
+
+    </div>
 </div>
+
+<script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=2.0&ak=pZF01A8WFzR6orPXQQ6IwwIgG6ZlP9Ix"></script>
+<script src="{% static 'js/layui.js' %}"></script>
+<script src="{% static 'js/bdmap.js' %}"></script>
+<script>
+    layui.use(['element', 'jquery', 'layer'], function () {
+        var $ = layui.$,
+            layer = layui.layer,
+            element = layui.element;
+
+        $(function () {
+            var address_latitude ={{ address_latitude |safe}};
+            var address_longitude ={{ address_longitude|safe }};
+            var address_data ={{ address_data |safe}};
+
+            var point = []; //存放标注点经纬信息的数组
+            var marker = []; //存放标注点对象的数组
+            var map = new BMap.Map("allmap");
+            map.centerAndZoom("上海", 15); // 设置显示中心点
+            map.enableScrollWheelZoom(true); // 设置鼠标滚轮缩放
+
+            var navigationControl = new BMap.NavigationControl({
+                // 靠左上角位置
+                anchor: BMAP_ANCHOR_TOP_LEFT,
+                // LARGE类型
+                type: BMAP_NAVIGATION_CONTROL_LARGE,
+                // 启用显示定位
+                enableGeolocation: true
+            });
+            map.addControl(navigationControl); // 设置左上角控件
+
+            // 弹出框公共配置
+            var opts = {
+                width:90,
+                height:100,
+                enableMessage:true
+            };
+
+
+            var searchInfoWindow = null;
+
+
+            for (var i = 0; i < address_longitude.length; i++) {
+                point[i] = new BMap.Point(address_longitude[i], address_latitude[i]); //循环生成新的地图点
+                var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif",new BMap.Size(300,160));
+                marker[i] = new BMap.Marker(point[i],{icon:myIcon});
+                map.addOverlay(marker[i]); // 按照地图点坐标生成标记
+                addClickHandler(address_data[i],marker[i]);
+            }
+
+            function addClickHandler(content,marker) {
+                marker.addEventListener('click',function (e) {
+                    openInfo(content,e);
+                });
+            }
+            function openInfo(content,e) {
+                var p = e.target;
+                var point = new BMap.Point(p.getPosition().lng,p.getPosition().lat);
+                var infoWindow = new BMap.InfoWindow(content,opts); // 创建信息窗口对象
+                map.openInfoWindow(infoWindow,point); // 开启信息窗口
+            }
+        });
+        });
+</script>
 </body>
 </html>
 
-
-<script type="text/javascript">
-      var map = new BMap.Map("allmap");
-      map.centerAndZoom(new BMap.Point(118.3088230000, 32.3002390000), 18);
-      map.enableScrollWheelZoom(true);
-      var navigationControl = new BMap.NavigationControl({
-          // 靠左上角位置
-          anchor: BMAP_ANCHOR_TOP_LEFT,
-          // LARGE类型
-          type: BMAP_NAVIGATION_CONTROL_LARGE,
-          // 启用显示定位
-          enableGeolocation: true
-      });
-      map.addControl(navigationControl);
-
-      function get_location() {
-
-          var address_latitude ={{ address_latitude |safe}};
-          var address_longitude ={{ address_longitude|safe }};
-          var address_data ={{ address_data |safe}};
-
-
-          var point = []; //存放标注点经纬信息的数组
-          var marker = []; //存放标注点对象的数组
-          for (var i = 0; i < address_longitude.length; i++) {
-              point[i] = new BMap.Point(address_longitude[i], address_latitude[i]); //循环生成新的地图点
-              marker[i] = new BMap.Marker(point[i]); //按照地图点坐标生成标记
-              map.addOverlay(marker[i]);
-          }
-
-          for (i = 0; i < marker.length; i++) {
-              (function () {
-                  var index = i;
-                  marker[index].addEventListener('click', function () {
-                      this.openInfoWindow(new BMap.InfoWindow(address_data[index]));
-                  });
-              })();
-          }
-
-      }
-  </script>

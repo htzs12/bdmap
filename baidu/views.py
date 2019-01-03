@@ -13,8 +13,6 @@ def index(request):
         address_latitude.append(address_point[i].latitude)
         address_data.append(address_point[i].data)
 
-    print(address_longitude[1])
-
-    return render(request, 'index1.html',
+    return render(request, 'index.html',
                   {'address_longitude': json.dumps(address_longitude),
                    'address_latitude': json.dumps(address_latitude), 'address_data': json.dumps(address_data)})

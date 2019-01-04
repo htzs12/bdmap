@@ -19,9 +19,10 @@ def index(request):
 
 
 # 异步加载数据
-def title(request):
-    id = request.GET.get('id')
-    address = address_info.objects.get(id=id)
+def get_title(request):
+    id = int(request.GET.get('id'))
+    id += 1
+    address = address_info.objects.filter(id=int(id))
     serializers = AddSerializers(address, many=True)
     data = serializers.data
     return restful.result(data=data)

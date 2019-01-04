@@ -12,6 +12,14 @@
 
 }
 
+.BMapLib_bubble_title {
+
+}
+
+.BMap_bottom {
+
+}
+
 .BMapLib_bubble_content {
     background: rebeccapurple;
     width: 400px;
@@ -22,15 +30,14 @@
     width: 200px;
     height: 120px;
     overflow: hidden;
-
 }
 
 .map-video {
     width: 620px;
     height: 180px;
     overflow: hidden;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin-bottom: 20px;
+    margin-top: 15px;
     background: pink;
 
 }
@@ -46,8 +53,26 @@ video {
     height: 180px;
 }
 
+.title p {
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
 .BMapLib_nav {
     width: 620px;
     height: 180px;
     overflow: hidden;
+}
+
+.BMap_center {
+    width: 650px;
+    height: 262px;
+    padding: 0;
+    background: pink;
+}
+
+.BMap_bubble_title {
+    padding: 0;
+    margin: 0;
+    height: 0;
 }

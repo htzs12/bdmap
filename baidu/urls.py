@@ -6,4 +6,5 @@ app_name = 'baidu'
 
 urlpatterns = [
     path('index/', views.index,name='index'),
+    path('get_title/', views.get_title,name='get_title'),
 ]

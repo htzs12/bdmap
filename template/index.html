@@ -87,14 +87,13 @@
             <div class="map-video" id="map-video">
                 <div class="video">
                     <video controls>
-                        <source src="/static/images/1.mp4" type="video/mp4">
+                        <source src="{{ title.video }}" type="video/mp4">
                     </video>
                 </div>
                 <div class="title">
-                    <p>地址:北京市海淀区上地十街10号</p>
-                    <p>电话：(010)59928888</p>
-                    <p>简介:百度大厦位于北京市海淀区西二旗地铁站附近，
-                        为百度公司综合研发及办公总部。</p>
+                    <p>地址：{{ title.address }}</p>
+                    <p>电话：{{ title.phone }}</p>
+                    <p>详情介绍：{{ title.desc }}</p>
                 </div>
             </div>
 
@@ -115,6 +114,96 @@
 <script src="{% static 'js/layui.js' %}"></script>
 <script src="{% static 'js/bdmap.js' %}"></script>
 <script src="{% static 'js/template-web.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{#<script>#}
+{#    layui.use(['element', 'jquery', 'layer'], function () {#}
+{#        var $ = layui.$,#}
+{#            layer = layui.layer,#}
+{#            element = layui.element;#}
+{##}
+{#        $(function () {#}
+{#            var address_latitude ={{ address_latitude |safe}};#}
+{#            var address_longitude ={{ address_longitude|safe }};#}
+{##}
+{#            var point = []; //存放标注点经纬信息的数组#}
+{#            var marker = []; //存放标注点对象的数组#}
+{#            var map = new BMap.Map("allmap");#}
+{#            map.centerAndZoom("上海", 15); // 设置显示中心点#}
+{#            map.enableScrollWheelZoom(true); // 设置鼠标滚轮缩放#}
+{##}
+{#            var navigationControl = new BMap.NavigationControl({#}
+{#                // 靠左上角位置#}
+{#                anchor: BMAP_ANCHOR_TOP_LEFT,#}
+{#                // LARGE类型#}
+{#                type: BMAP_NAVIGATION_CONTROL_LARGE,#}
+{#                // 启用显示定位#}
+{#                enableGeolocation: true#}
+{#            });#}
+{#            map.addControl(navigationControl); // 设置左上角控件#}
+{##}
+{#            for (var i = 0; i < address_longitude.length; i++) {#}
+{#                point[i] = new BMap.Point(address_longitude[i], address_latitude[i]); //循环生成新的地图点#}
+{#                var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif",new BMap.Size(300,160));#}
+{#                marker[i] = new BMap.Marker(point[i],{icon:myIcon});#}
+{#                map.addOverlay(marker[i]); // 按照地图点坐标生成标记#}
+{##}
+{#                var opts = {#}
+{#                panel:'panel',#}
+{#                enableMessage:true,#}
+{#                enableAutoPan : true,     //自动平移#}
+{#			    searchTypes   :[#}
+{#				BMAPLIB_TAB_SEARCH,   //周边检索#}
+{#				BMAPLIB_TAB_TO_HERE,  //到这里去#}
+{#				BMAPLIB_TAB_FROM_HERE //从这里出发#}
+{#			]#}
+{#            };#}
+{##}
+{#            var searchInfoWindow = null;#}
+{#            searchInfoWindow = new BMapLib.SearchInfoWindow(map,opts);#}
+{##}
+{#                addClickHandler(marker[i],i);#}
+{#            }#}
+{##}
+{#            function addClickHandler(marker,i) {#}
+{#                marker.addEventListener('click',function (e) {#}
+{#                    openInfo(e);#}
+{#                    searchInfoWindow.open(marker);#}
+{#                    console.log(i);#}
+{##}
+{#                    $.ajax({#}
+{#                       type:'get',#}
+{#                        url:'/baidu/get_title/',#}
+{#                        data:{#}
+{#                           id:i#}
+{#                        },#}
+{#                        'success':function (result) {#}
+{#                           if (result['code'] === 200){#}
+{#                               var titles = result['data'];#}
+{#                               console.log(titles);#}
+{#                               var body = $('.BMapLib_bubble_content');#}
+{#                               var html = template('title-item',{'titles':titles});#}
+{##}
+{#                               body.append(html);#}
+{#                               alert('添加成功！');#}
+{##}
+                               {#document.getElementById('comment-desc').innerHTML = html;#}
+{#                           }#}
+{#                        }#}
+{#                    });#}
+{#                });#}
+{#            }#}
+{##}
+{#            function openInfo(e) {#}
+{#                var p = e.target;#}
+{#                var point = new BMap.Point(p.getPosition().lng,p.getPosition().lat);#}
+{#                var infoWindow = new BMap.InfoWindow(opts); // 创建信息窗口对象#}
+{#                map.openInfoWindow(infoWindow,point); // 开启信息窗口\#}
+{#            }#}
+{#        });#}
+{#     });#}
+{#</script>#}
+
+
 <script>
     layui.use(['element', 'jquery', 'layer'], function () {
         var $ = layui.$,
@@ -146,41 +235,37 @@
                 var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif",new BMap.Size(300,160));
                 marker[i] = new BMap.Marker(point[i],{icon:myIcon});
                 map.addOverlay(marker[i]); // 按照地图点坐标生成标记
+                addClickHandler(marker[i],i);
 
                 var opts = {
-                panel:'panel',
-                enableMessage:true,
-                enableAutoPan : true,     //自动平移
-			    searchTypes   :[
-				BMAPLIB_TAB_SEARCH,   //周边检索
-				BMAPLIB_TAB_TO_HERE,  //到这里去
-				BMAPLIB_TAB_FROM_HERE //从这里出发
-			]
-            };
-
-            var searchInfoWindow = null;
-            searchInfoWindow = new BMapLib.SearchInfoWindow(map,opts);
-
-                addClickHandler(marker[i],i);
+                    width : 250,     // 信息窗口宽度
+                    height: 80,     // 信息窗口高度
+                    title : "信息窗口" , // 信息窗口标题
+                    enableMessage:true//设置允许信息窗发送短息
+                };
             }
 
             function addClickHandler(marker,i) {
                 marker.addEventListener('click',function (e) {
-                    openInfo(e);
-                    searchInfoWindow.open(marker);
                     console.log(i);
 
                     $.ajax({
                        type:'get',
-                        url:'/map/get_title/',
+                        url:'/baidu/get_title/',
                         data:{
                            id:i
                         },
                         'success':function (result) {
                            if (result['code'] === 200){
-                               var title = result['data'];
-                               console.log(title);
-                               {#var html = template('title-item',{'titles':titles});#}
+                               var titles = result['data'];
+                               console.log(titles);
+                               var body = $('.BMapLib_bubble_content');
+                               var html = template('title-item',{'titles':titles});
+
+                               body.append(html);
+                               {#alert('添加成功！');#}
+                               openInfo(html,e);
+
                                {#document.getElementById('comment-desc').innerHTML = html;#}
                            }
                         }
@@ -188,15 +273,16 @@
                 });
             }
 
-            function openInfo(e) {
+            function openInfo(html,e) {
                 var p = e.target;
                 var point = new BMap.Point(p.getPosition().lng,p.getPosition().lat);
-                var infoWindow = new BMap.InfoWindow(opts); // 创建信息窗口对象
+                var infoWindow = new BMap.InfoWindow(html); // 创建信息窗口对象
                 map.openInfoWindow(infoWindow,point); // 开启信息窗口\
             }
         });
      });
 </script>
+
 
 </body>
 </html>

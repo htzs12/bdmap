@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9847f4a6-bec3-4fb9-be33-133faeade71e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/baidu/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/template/video.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baidu/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/baidu/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baidu/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/baidu/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baidu/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/baidu/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="9847f4a6-bec3-4fb9-be33-133faeade71e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/template/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+            <state relative-caret-position="467">
+              <caret line="188" column="13" lean-forward="true" selection-start-line="188" selection-start-column="13" selection-end-line="188" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -126,7 +116,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="289" />
+    <option name="x" value="22" />
     <option name="width" value="1932" />
     <option name="height" value="1052" />
   </component>
@@ -242,16 +232,15 @@
       <updated>1546415713997</updated>
       <workItem from="1546478127776" duration="11740000" />
       <workItem from="1546490449466" duration="10143000" />
-      <workItem from="1546500621265" duration="10079000" />
+      <workItem from="1546500621265" duration="10148000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31962000" />
+    <option name="totallyTimeSpent" value="32031000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="289" y="0" width="1932" height="1052" extended-state="0" />
-    <editor active="true" />
+    <frame x="-47" y="0" width="1932" height="1052" extended-state="0" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -259,13 +248,13 @@
       <window_info active="true" anchor="bottom" id="manage.py@bdmap" weight="0.3297062" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.23925027" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33079433" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33079433" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39977974" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.29297298" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.29270947" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32929516" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
@@ -399,8 +388,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/template/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+        <state relative-caret-position="467">
+          <caret line="188" column="13" lean-forward="true" selection-start-line="188" selection-start-column="13" selection-end-line="188" selection-end-column="13" />
         </state>
       </provider>
     </entry>

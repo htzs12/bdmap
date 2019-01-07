@@ -1,56 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.bootcss.com/video.js/5.20.5/alt/video-js-cdn.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/video.js/5.20.5/video.js"></script>
+
+    <title>Document</title>
 </head>
 <body>
 
-
-<div class="BMapLib_nav" id="BMapLib_nav0">
-    <ul class="BMapLib_nav_tab" id="BMapLib_nav_tab0">
-        <li class="BMapLib_current BMapLib_first" id="BMapLib_tab_search0" style="display: block; width: 99px;"><span
-                class="BMapLib_icon BMapLib_icon_nbs"></span>在附近找
-        </li>
-        <li class="" id="BMapLib_tab_tohere0" style="display: block; width: 99px;"><span
-                class="BMapLib_icon BMapLib_icon_tohere"></span>到这里去
-        </li>
-        <li class="" id="BMapLib_tab_fromhere0" style="display: block; width: 100px;"><span
-                class="BMapLib_icon BMapLib_icon_fromhere"></span>从这里出发
-        </li>
-    </ul>
-    <ul class="BMapLib_nav_tab_content">
-        <li id="BMapLib_searchBox0" style="display: block;">
-            <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                <tr>
-                    <td style="padding-left:8px;"><input id="BMapLib_search_text0" class="BMapLib_search_text"
-                                                         type="text" maxlength="100" autocomplete="off"></td>
-                    <td width="55" style="padding-left:7px;"><input id="BMapLib_search_nb_btn0" type="submit" value="搜索"
-                                                                    class="iw_bt"></td>
-                </tr>
-                </tbody>
-            </table>
-        </li>
-        <li id="BMapLib_transBox0" style="display: none;">
-            <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
-                <tbody>
-                <tr>
-                    <td width="30" style="padding-left:8px;">
-                        <div id="BMapLib_stationText0">起点</div>
-                    </td>
-                    <td><input id="BMapLib_trans_text0" class="BMapLib_trans_text" type="text" maxlength="100"
-                               autocomplete="off"></td>
-                    <td width="106" style="padding-left:7px;"><input id="BMapLib_search_bus_btn0" type="button"
-                                                                     value="公交" class="iw_bt" style="margin-right:5px;"><input
-                            id="BMapLib_search_drive_btn0" type="button" class="iw_bt" value="驾车"></td>
-                </tr>
-                </tbody>
-            </table>
-        </li>
-    </ul>
+<div id="content">
+    <video id="rtmpVideo" class="video-js vjs-default-skin vjs-big-play-centered" width="800px" height="400px">
+        <source src="rtmp://139.196.76.251:1935/live/hao" type="rtmp/flv">
+        <p class="vjs-no-js">
+            您的浏览器不支持HTML5，请升级浏览器。
+        </p>
+    </video>
 </div>
 
+<script>
+    videojs.options.flash.swf = "https://cdn.bootcss.com/video.js/5.20.5/video-js.swf";
+    // 初始化视频，设为全局变量
+    var myPlayer = videojs('rtmpVideo', {
+        autoplay: true,
+        controls: true,//控制条
+        poster: "/images/camera/playStop.png",
+        techOrder: ["flash"],
+        muted: true,// 静音
+        preload: "auto",// 预加载
+        language: "zh-CN",// 初始化语言
+        playbackRates: [1, 2, 3, 4, 5, 8, 10, 20]// 播放速度
+    }, function () {
+        console.log("--------------成功初始化视频--------------");
+        myPlayer.one("playing", function () {         // 监听播放
+            console.log("开始播放");
+        });
+        myPlayer.one("error", function (error) {      // 监听错误
+            console.error("监听到异常，错误信息：%o",error);
+        });
+    });
+</script>
 
 </body>
 </html>

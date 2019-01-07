@@ -5,6 +5,7 @@ from .serializers import AddSerializers
 from utils import restful
 
 
+# 加载首页数据
 def index(request):
     address_point = address_info.objects.all()
     address_longitude = []
@@ -26,3 +27,24 @@ def get_title(request):
     serializers = AddSerializers(address, many=True)
     data = serializers.data
     return restful.result(data=data)
+
+
+# 查询地图
+def search_map(request):
+    all_address = address_info.objects.all()
+    context = {'all_address':all_address}
+    return render(request, 'search.html', context=context)
+
+
+# 添加地图
+def add_map(request):
+    id = request.GET.get('id','1')
+    all_address = address_info.objects.all()
+
+    context = {'all_address':all_address}
+
+    return render(request, 'add.html', context=context)
+
+
+def video(request):
+    return render(request,'video.html')

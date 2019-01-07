@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block title %}
 添加地图
+{% endblock %}
+
+{% block my_css %}
+    <link rel="stylesheet" href="{% static 'css/add.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -32,7 +37,7 @@
 
                 {% for address in all_address %}
 
-                    <tr>
+                <tr>
                     <td>{{ address.id }}</td>
                     <td>{{ address.latitude }}</td>
                     <td>{{ address.longitude }}</td>
@@ -41,8 +46,8 @@
                     <td>{{ address.desc }}</td>
                     <td>{{ address.video }}</td>
                     <td>
-                        <span><a href="">修改</a></span>
-                        <span><a href="">删除</a></span>
+                        <span>修改</span>
+                        <span>删除</span>
                     </td>
                 </tr>
 

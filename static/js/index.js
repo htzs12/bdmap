@@ -15,7 +15,7 @@ Data.prototype.listenAddEvent = function () {
 };
 
 
-$(function () {
-    var add = new Data();
-    add.run();
-});
+// $(function () {
+//     var add = new Data();
+//     add.run();
+// });

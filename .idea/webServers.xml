@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="e7eeada6-344f-47ac-8333-de4ff58fe1fb" name="video" url="http://139.196.76.251">
-        <fileTransfer host="139.196.76.251" port="22" rootFolder="/root/bdmap" accessType="SFTP">
+        <fileTransfer host="139.196.76.251" port="22" rootFolder="/root" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

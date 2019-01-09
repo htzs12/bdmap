@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block title %}
 地图总控页面
 {% endblock %}
 
 {% block my_css %}
-
+<link href="https://cdn.bootcss.com/video.js/5.20.5/alt/video-js-cdn.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -22,8 +23,8 @@
 
             <div class="map-video" id="map-video">
                 <div class="video">
-                    <video controls>
-                        <source src="{{ title.video }}" type="video/mp4">
+                    <video controls id="my-video" class="video video-js vjs-default-skin vjs-big-play-centered" width="320px" height="240px">
+                        <source src="rtmp://192.168.2.113:1935/hls/hao" type="rtmp/flv">
                     </video>
                 </div>
                 <div class="title">
@@ -37,10 +38,9 @@
 
             {% endverbatim %}
 
-        </script>
+    </script>
 
 {% endblock %}
-
 
 {% block my_js %}
 

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'css/layui.css' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
+<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.0/skins/default/aliplayer-min.css" />
+
 {% block my_css %}{% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
@@ -99,6 +101,7 @@
 <script src="{% static 'js/template-web.js' %}"></script>
 <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
 
+
 <script>
     layui.use(['element', 'jquery', 'layer', 'table'], function () {
             var $ = layui.$,
@@ -187,12 +190,37 @@
     });
 </script>
 
-<script src="https://cdn.bootcss.com/video.js/5.20.5/video.js"></script>
-    <script>
-        videojs.options.flash.swf = "https://cdn.bootcss.com/video.js/5.20.5/video-js.swf";
-        // 初始化视频，设为全局变量
-        var myPlayer = videojs('my-video');
-    </script>
+
+{#<script src="//imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer-2.2.2.js" charset="utf-8"></script>;#}
+{##}
+{#<script>#}
+{##}
+{#    $(function () {#}
+{#        var player = new TcPlayer('my-video', {#}
+{#        "rtmp": "rtmp://192.168.2.113:1935/hls/hao", //请替换成实际可用的播放地址#}
+{#        "autoplay" : true,      //iOS下safari浏览器，以及大部分移动端浏览器是不开放视频自动播放这个能力的#}
+{#        "coverpic" : "http://www.test.com/myimage.jpg",#}
+{#        "width" :  '480',//视频的显示宽度，请尽量使用视频分辨率宽度#}
+{#        "height" : '320'//视频的显示高度，请尽量使用视频分辨率高度#}
+{#        });#}
+{#    });#}
+{##}
+{#</script>#}
+
+
+<script src="https://g.alicdn.com/de/prismplayer/2.8.0/aliplayer-min.js"></script>
+
+<script>
+    var Aliplayer = '';
+    var player = new Aliplayer({
+        id: 'my-video',
+        width: '100%',
+        autoplay: true,
+        source : 'rtmp://192.168.2.113:1935/hls/hao',
+        isLive:true
+    });
+
+</script>
 
 </body>
 </html>

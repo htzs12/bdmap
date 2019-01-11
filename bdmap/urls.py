@@ -18,5 +18,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('baidu/', include('baidu.urls')),
+    path('baidu/', include('apps.baidu.urls')),
+    path('vue/', include('apps.vue.urls')),
 ]

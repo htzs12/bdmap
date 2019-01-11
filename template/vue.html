@@ -2,9 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-$END$
+
+{% verbatim %}
+
+<div id="vue_demo">
+    <h1>{{ site }}</h1>
+    <h1>{{ url }}</h1>
+    <h1>{{ details() }}</h1>
+</div>
+
+{% endverbatim %}
+
+
+<div id="app">
+     <div v-html="'message'">
+
+     </div>
+</div>
+
+<script>
+    var vm = new Vue({
+        el:'#vue_demo',
+        data:{
+            site:'百度',
+            url:'www.baidu.com'
+        },
+        methods:{
+            details:function () {
+                return this.site+'-- baidu';
+            }
+        }
+    });
+    var vr = new Vue({
+       el:'app',
+       data:{
+           message:'<h1>我是你浩哥。</h1>'
+       }
+    })
+</script>
+
 </body>
 </html>

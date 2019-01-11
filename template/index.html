@@ -7,6 +7,7 @@
 
 {% block my_css %}
 <link href="https://cdn.bootcss.com/video.js/5.20.5/alt/video-js-cdn.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.0/skins/default/aliplayer-min.css">
 {% endblock %}
 
 {% block content %}
@@ -23,7 +24,8 @@
 
             <div class="map-video" id="map-video">
                 <div class="video">
-                    <video controls id="my-video" class="video video-js vjs-default-skin vjs-big-play-centered" width="320px" height="240px">
+                    <video controls id="my-video" class="video video-js vjs-default-skin vjs-big-play-centered"
+                           width="320px" height="240px" data-setup="{}" preload='auto'>
                         <source src="rtmp://192.168.2.113:1935/hls/hao" type="rtmp/flv">
                     </video>
                 </div>

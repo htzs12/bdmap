@@ -40,10 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.baidu',
+    'baidu',
     'rest_framework',
-    'apps.vue',
-    'apps.users'
+    'vue',
+    'users',
+    'djcelery'
 ]
 
 MIDDLEWARE = [
@@ -138,5 +139,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static'),
     ]
+
+
+
 
 

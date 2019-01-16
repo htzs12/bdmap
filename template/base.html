@@ -18,20 +18,11 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">地图后台系统</div>
+        <div class="layui-logo">江苏水利监控后台系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
+            <li class="layui-nav-item"><a href="">数据大屏</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
@@ -53,23 +44,37 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有操作</a>
+                    <a class="" href="javascript:;">视频监控</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="{% url 'baidu:search_map' %}">查询地图</a></dd>
-                        <dd><a href="{% url 'baidu:add_map' %}">添加地图</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a href="{% url 'baidu:search_map' %}">监控分布</a></dd>
+                        <dd><a href="{% url 'baidu:add_map' %}">监控墙</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                    <a class="" href="javascript:;">预警分析</a>
+                     <dl class="layui-nav-child">
+                        <dd><a href="{% url 'baidu:search_map' %}">预警清单</a></dd>
+                        <dd><a href="{% url 'baidu:add_map' %}">通知处理</a></dd>
+                        <dd><a href="{% url 'baidu:add_map' %}">分析统计</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
+               <li class="layui-nav-item">
+                    <a class="" href="javascript:;">备案管理</a>
+                     <dl class="layui-nav-child">
+                        <dd><a href="{% url 'baidu:search_map' %}">处理备案</a></dd>
+                        <dd><a href="{% url 'baidu:add_map' %}">查询统计</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">系统管理</a>
+                     <dl class="layui-nav-child">
+                        <dd><a href="{% url 'baidu:search_map' %}">用户管理</a></dd>
+                        <dd><a href="{% url 'baidu:search_map' %}">地图设置</a></dd>
+                        <dd><a href="{% url 'baidu:search_map' %}">通告设置</a></dd>
+                        <dd><a href="{% url 'baidu:search_map' %}">监控管理</a></dd>
+                        <dd><a href="{% url 'baidu:add_map' %}">操作日志</a></dd>
+                    </dl>
+                </li>
             </ul>
         </div>
     </div>

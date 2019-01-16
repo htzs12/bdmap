@@ -49,3 +49,7 @@ class TestAuthView(APIView):
     def get(self,request,*args,**kwargs):
         print('ok')
         return Request('GET ok')
+
+
+def vue_demo(requst):
+    return render(requst,'vue.html')

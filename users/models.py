@@ -38,7 +38,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     telephone = models.CharField(max_length=11,unique=True,verbose_name='手机号')
     email= models.EmailField(unique=True,verbose_name='邮箱')
     username = models.CharField(max_length=100,verbose_name='用户名')
-    image = models.ImageField(upload_to='image/%Y/%m',verbose_name='用户头像')
+    # image = models.ImageField(upload_to='image/%Y/%m',verbose_name='用户头像')
     is_active = models.BooleanField(default=False,verbose_name='是否激活')
     is_staff = models.BooleanField(default=True,verbose_name='是否为员工')
     date_joined = models.DateTimeField(auto_now_add=True,verbose_name='添加时间')

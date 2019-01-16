@@ -15,6 +15,11 @@
     <h1>{{ details() }}</h1>
 </div>
 
+    <div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
+</div>
+
 {% endverbatim %}
 
 
@@ -25,7 +30,7 @@
 </div>
 
 <script>
-    var vm = new Vue({
+    var demo1 = new Vue({
         el:'#vue_demo',
         data:{
             site:'百度',
@@ -37,12 +42,21 @@
             }
         }
     });
-    var vr = new Vue({
+    var demo2 = new Vue({
        el:'app',
        data:{
            message:'<h1>我是你浩哥。</h1>'
        }
-    })
+    });
+
+
+    var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+
 </script>
 
 </body>

@@ -9,4 +9,5 @@ urlpatterns = [
     path('add_map/', views.add_map, name='add_map'),
     path('search_map/', views.search_map, name='search_map'),
     path('video/', views.video, name='video'),
+    path('vue/', views.vue, name='vue'),
 ]

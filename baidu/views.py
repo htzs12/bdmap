@@ -49,3 +49,7 @@ def add_map(request):
 
 def video(request):
     return render(request, 'video.html')
+
+
+def vue(request):
+    return render(request,'vue.html')
